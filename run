@@ -1,0 +1,26 @@
+#!/bin/sh
+if [ "x${1}" =  "x" ] && [ "x${2}" = "x" ]; then
+	echo "USAGE: $0 <local|remote> <day #> [test]"
+fi
+
+if [ "${1}" = "remote" ]; then
+	base_url="https://aoc2022maxdoronin.azurewebsites.net/day/"
+else
+	base_url="http://localhost:7071/day/"
+fi
+
+url="${base_url}${2}"
+
+if [ "${3}" = "test" ]; then
+	input1_suffix="test"
+	input2_suffix="test"
+else
+	input1_suffix="1"
+	input2_suffix="2"
+fi
+input1="first=@./inputs/day${2}-${input1_suffix}.txt"
+input2="second=@./inputs/day${2}-${input2_suffix}.txt"
+
+pwd
+
+curl -F ${input1} -F ${input2} ${url}
