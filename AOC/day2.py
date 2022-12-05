@@ -32,6 +32,6 @@ class DayXSolver(Solver):
         
         return (result)
 
-def process(request):
-    solver = DayXSolver(request)
+def process(request, year, day):
+    solver = DayXSolver(request, year, day)
     return (solver.process())
