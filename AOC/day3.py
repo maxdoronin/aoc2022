@@ -10,8 +10,7 @@ class DayXSolver(Solver):
     def first_problem(self):
         result=0
 
-        for line in self.first_file_lines:
-            rucksack = line.strip()
+        for rucksack in self.first_file_lines:
             compartment_1 = rucksack[:len(rucksack)//2]
             compartment_2 = rucksack[len(rucksack)//2:]
 
@@ -37,9 +36,9 @@ class DayXSolver(Solver):
         while (rucksack_1 := next(lines, None)) is not None:
             # assume the number of rucksacks is always 3n
             # convert to set for O(1) search
-            rucksack_1 = set(rucksack_1.strip())
-            rucksack_2 = set(next(lines).strip())
-            rucksack_3 = set(next(lines).strip())
+            rucksack_1 = set(rucksack_1)
+            rucksack_2 = set(next(lines))
+            rucksack_3 = set(next(lines))
 
             for item in rucksack_1:
                 if item in rucksack_2 and item in rucksack_3:
