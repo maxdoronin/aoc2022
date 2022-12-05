@@ -10,11 +10,11 @@ class Solver:
             file = self.request.files.get("first")
             if file != None:
                 lines = file.readlines()
-                self.first_file_lines = (l.strip().decode("utf-8") for l in lines)
+                self.first_file_lines = (l.decode("utf-8").rstrip("\n") for l in lines)
             file = self.request.files.get("second")
             if file != None:
                 lines = file.readlines()
-                self.second_file_lines = (l.strip().decode("utf-8") for l in lines)
+                self.second_file_lines = (l.decode("utf-8").rstrip("\n") for l in lines)
 
     def process(self):
         res = ""
