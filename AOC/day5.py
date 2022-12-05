@@ -1,9 +1,6 @@
 from AOC.Solver import Solver
 
 class DayXSolver(Solver):
-    def __init__(self, request):
-        super().__init__(request)
-
     class Stack:
         def __init__(self, s: str):
             self.s = s
@@ -94,6 +91,6 @@ class DayXSolver(Solver):
             result += s.pop(1)
         return (result)
 
-def process(request):
-    solver = DayXSolver(request)
+def process(request, year, day):
+    solver = DayXSolver(request, year, day)
     return (solver.process())

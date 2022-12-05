@@ -4,6 +4,8 @@ from flask import abort
 
 from AOC import *
 
+year = "2022"
+
 app = Flask(__name__)
 
 @app.route("/day/<int:dayNo>", methods = ['GET', 'POST'])
@@ -14,7 +16,7 @@ def index(dayNo: int):
         abort(404, f"day{dayNo} has not yet been implemented")
 
     if callable(dayHandler):
-        return (dayHandler(request))
+        return (dayHandler(request, year, dayNo))
     else:
         abort(500, f"Interface spec violation for day{dayNo}")
 

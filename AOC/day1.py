@@ -39,6 +39,6 @@ class DayXSolver(Solver):
             
         return (sum(calories))
 
-def process(request):
-    solver = DayXSolver(request)
+def process(request, year, day):
+    solver = DayXSolver(request, year, day)
     return (solver.process())
