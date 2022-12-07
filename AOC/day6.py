@@ -6,7 +6,7 @@ class DayXSolver(Solver):
         for (n, symbol) in enumerate(message):
             if len(symbol_buffer) < sequence_length:
                 if symbol in symbol_buffer:
-                    symbol_buffer = ""
+                    symbol_buffer = symbol_buffer[symbol_buffer.find(symbol)+1:]
                 symbol_buffer += symbol
             else:
                 return (n)
