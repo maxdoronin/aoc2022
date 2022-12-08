@@ -5,8 +5,8 @@ from flask import abort
 class Solver:
     def __init__(self, request, year, day):
         self.request = request
-        self.first_file_lines = None
-        self.second_file_lines = None
+        self.first_file_lines = list()
+        self.second_file_lines = list()
         if self.request.method == "GET":
             session = self.request.cookies.get("session", None)
             if (session != None):
@@ -14,13 +14,13 @@ class Solver:
                 url.add_header ("Cookie", f"session={session}")
                 lines = urllib.request.urlopen(url).readlines()
                 try:
-                    self.first_file_lines = (l.decode("utf-8").rstrip("\n") for l in lines)
+                    self.first_file_lines = list(l.decode("utf-8").rstrip("\n") for l in lines)
                 except urllib.error.HTTPError as e:     
                     print (e.reason)
                     abort (400)
                 lines = urllib.request.urlopen(url).readlines()
                 try:
-                    self.second_file_lines = (l.decode("utf-8").rstrip("\n") for l in lines)
+                    self.second_file_lines = list(l.decode("utf-8").rstrip("\n") for l in lines)
                 except urllib.error.HTTPError as e:     
                     print (e.reason)
                     abort (400)
@@ -31,13 +31,13 @@ class Solver:
             file = self.request.files.get("first")
             if file != None:
                 lines = file.readlines()
-                self.first_file_lines = (l.decode("utf-8").rstrip("\n") for l in lines)
+                self.first_file_lines = list(l.decode("utf-8").rstrip("\n") for l in lines)
             else:
                 abort (400, "'first' file required")
             file = self.request.files.get("second")
             if file != None:
                 lines = file.readlines()
-                self.second_file_lines = (l.decode("utf-8").rstrip("\n") for l in lines)
+                self.second_file_lines = list(l.decode("utf-8").rstrip("\n") for l in lines)
             else:
                 self.second_file_lines = None
 
