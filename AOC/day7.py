@@ -6,7 +6,7 @@ class DayXSolver(Solver):
         self.answer1 = 0
         self.dir_sizes = []
         self.dirs = []
-        Solver.__init__(self, request, year, day)
+        super().__init__(request, year, day)
 
     def process_directory(self, lines):
         dirs = []
