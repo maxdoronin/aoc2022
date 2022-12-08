@@ -88,7 +88,7 @@ class DayXSolver(Solver):
                     tree > self.highest_south_tree[r][c] or
                     tree > self.highest_east_tree[r][c]):
                     result += 1
-        return (i)
+        return (result)
 
     def calculate_scenic_score(self, r, c):
         tree = self.forest[r][c]
