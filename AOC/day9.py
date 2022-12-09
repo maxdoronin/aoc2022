@@ -5,7 +5,6 @@ class DayXSolver(Solver):
     class Rope():
         class Board():
             def __init__(self, board_v_size, board_h_size):
-                # self.board_size = board_size
                 self.board = np.chararray((board_v_size, board_h_size), unicode=True, itemsize=1)
                 self.board[:] = "."
             
@@ -66,7 +65,7 @@ class DayXSolver(Solver):
                 return (rc.c - self.c)
             
             def __str__(self):
-                return (f"r:{self.r}, c:{self.c}")
+                return (f"(r:{self.r}, c:{self.c})")
 
             def __repr__(self):
                 return self.__str__()
@@ -87,17 +86,10 @@ class DayXSolver(Solver):
                     self.board.set_board_value(r, c, "#")
 
         def __str__(self):
-            res = ""
-            for knot in self.knots:
-                res += f"({knot.r}, {knot.c})"
-            return (res)
+            return (", ".join([str(k) for k in self.knots]))
         
         def __repr__(self):
             return self.__str__()
-
-    def __init__(self, request, year, day):
-        super().__init__(request, year, day)
-
 
     def first_problem(self):
         board_h_size = 2000
