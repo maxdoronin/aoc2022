@@ -87,13 +87,13 @@ class DayXSolver(Solver):
             self.monkeys.append(self.Monkey(monkey_lines))
 
     def manage_worry_level_part_1(self, worry_level):
-        return (worry_level // 3)
+        return (worry_level // self.worry_management_arg)
 
     def manage_worry_level_part_2(self, worry_level):
-        return (worry_level % self.monkeys_factors)
+        return (worry_level % self.worry_management_arg)
         
     def first_problem(self):
-        result=0
+        self.worry_management_arg = 3
         self.parse_input(self.first_file_lines)
         for i in range(20):
             for m in self.monkeys:
@@ -110,9 +110,9 @@ class DayXSolver(Solver):
 
     def second_problem(self):
         self.parse_input(self.second_file_lines)
-        self.monkeys_factors = 1
+        self.worry_management_arg = 1
         for m in self.monkeys:
-            self.monkeys_factors *= m.test_arg
+            self.worry_management_arg *= m.test_arg
  
         for i in range(10000):
             for m in self.monkeys:
