@@ -175,7 +175,7 @@ class DayXSolver(Solver):
             step += 1
 
         clip = ImageSequenceClip(frames, fps=25)
-        clip.write_videofile('part1.mp4', fps=25, codec="libx264")
+        clip.write_videofile('outputs/day14/part1.mp4', fps=25, codec="libx264")
 
         return (result)
 
@@ -204,7 +204,7 @@ class DayXSolver(Solver):
                 grain_age += 1
             step += 1
         clip = ImageSequenceClip(frames, fps=25)
-        clip.write_videofile('part2.mp4', fps=25, codec="libx264")
+        clip.write_videofile('outputs/day14/part2.mp4', fps=25, codec="libx264")
         return (result+1)
 
 def process(request, year, day):
