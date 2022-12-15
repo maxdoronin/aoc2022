@@ -70,7 +70,7 @@ class DayXSolver(Solver):
 
             r1 = covered_ranges.pop(0)
             while len(covered_ranges) > 0:
-                r2 = covered_ranges.pop(0)                
+                r2 = covered_ranges.pop(0)                  
                 if (r2[0]-r1[1]>1):
                     result = target_line + 4000000*(r1[1]+1)
                     break
