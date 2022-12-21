@@ -63,7 +63,7 @@ class DayXSolver(Solver):
 
         return (connected_sides_list)
 
-    def process_point(self, t, air):
+    def propagate_steam_from_point(self, t, air):
         r = self.air.get(t, None)
         stack = []
         if r == 0:
@@ -85,51 +85,51 @@ class DayXSolver(Solver):
         z = 0
         for x, y in [(x, y) for x in range(self.max_x + 1) for y in range(self.max_y + 1)]:
             t = (x, y, z)
-            stack += self.process_point(t, air)
+            stack += self.propagate_steam_from_point(t, air)
             while len(stack) > 0:
                 tn = stack.pop()
-                stack += self.process_point(tn, air)
+                stack += self.propagate_steam_from_point(tn, air)
 
         y = 0
         for x, z in [(x, z) for x in range(self.max_x + 1) for z in range(self.max_z + 1)]:
             t = (x, y, z)
-            stack += self.process_point(t, air)
+            stack += self.propagate_steam_from_point(t, air)
             while len(stack) > 0:
                 tn = stack.pop()
-                stack += self.process_point(tn, air)
+                stack += self.propagate_steam_from_point(tn, air)
 
         x = 0
         for y, z in [(y, z) for y in range(self.max_y + 1) for z in range(self.max_z + 1)]:
             t = (x, y, z)
-            stack += self.process_point(t, air)
+            stack += self.propagate_steam_from_point(t, air)
             while len(stack) > 0:
                 tn = stack.pop()
-                stack += self.process_point(tn, air)
+                stack += self.propagate_steam_from_point(tn, air)
 
         z = self.max_z
         for x, y in [(x, y) for x in range(self.max_x + 1) for y in range(self.max_y + 1)]:
             t = (x, y, z)
-            stack += self.process_point(t, air)
+            stack += self.propagate_steam_from_point(t, air)
             while len(stack) > 0:
                 tn = stack.pop()
-                stack += self.process_point(tn, air)
+                stack += self.propagate_steam_from_point(tn, air)
 
         y = self.max_y
         for x, z in [(x, z) for x in range(self.max_x + 1) for z in range(self.max_z + 1)]:
             t = (x, y, z)
             print (t)
-            stack += self.process_point(t, air)
+            stack += self.propagate_steam_from_point(t, air)
             while len(stack) > 0:
                 tn = stack.pop()
-                stack += self.process_point(tn, air)
+                stack += self.propagate_steam_from_point(tn, air)
 
         x = self.max_x
         for y, z in [(y, z) for y in range(self.max_y + 1) for z in range(self.max_z + 1)]:
             t = (x, y, z)
-            stack += self.process_point(t, air)
+            stack += self.propagate_steam_from_point(t, air)
             while len(stack) > 0:
                 tn = stack.pop()
-                stack += self.process_point(tn, air)
+                stack += self.propagate_steam_from_point(tn, air)
 
     def first_problem(self):
         result=0
@@ -145,21 +145,8 @@ class DayXSolver(Solver):
         connected_sides = self.get_connected_sides_list(trapped_air)
         pp.pprint(trapped_air)
         print (self.max_x, self.max_y, self.max_z)
-        # space = np.full((self.max_x+1, self.max_y+1, self.max_z+1), 3, dtype=np.uint8)
-        # for x, y, z in [(x, y, z) for x in range (self.max_x) for y in range(self.max_y) for z in range(self.max_z)]:
-        #     air = self.air.get((x,y,z), None)
-        #     if air != None:
-        #         space[x, y, z] = air
-        #     elif [x, y, z] in self.droplets:
-        #         space[x, y, z] = 2
-        #     else:
-        #         space[x, y, z] = 3
-        # print (self.droplets)
-        # print (space)
-        # print (len(connected_sides))
         connected = 0
         for connected_sides_vector in connected_sides:
-            #print (connected_sides_vector)
             connected += 6 - sum(connected_sides_vector)    
         print (connected)    
 
