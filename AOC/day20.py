@@ -1,6 +1,4 @@
 from AOC.Solver import Solver
-import pprint
-import hashlib
 
 pp = pprint.PrettyPrinter(indent=4)
 
